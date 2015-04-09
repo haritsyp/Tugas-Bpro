@@ -5,6 +5,7 @@ public class TiketPesawat
   public static void main(String[]args)
   {
     Scanner br=new Scanner(System.in);
+    int omset=0;
     int pesan=0;
     int jumlah=0;
     int total=0;
@@ -144,7 +145,7 @@ public class TiketPesawat
  }
  System.out.println("Jumlah semua kursi: " +semua);
     break; 
-    case 6:
+    case 5:
       int jum=0;
       for(int i=0;i<13;i++)
     {
@@ -155,11 +156,11 @@ public class TiketPesawat
         jum++;
       }
     }
-    int omset=jum*150000;
-    System.out.print("Total Omset : "+omset);
+    omset=jum*150000;   
     }
+     System.out.print("Total Omset : "+omset);
     break;
-    case 5:
+    case 6:
       System.exit(0);
     break;
     }
