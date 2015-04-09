@@ -151,9 +151,9 @@ public class TiketPesawat
             }
             
             System.out.println("Jumlah kursi terisi : " +terisi);
-            System.out.println("Jumlah kursi vip  : " +vip);
-            System.out.println("Jumlah kursi bisnis : " +bisnis);
-            System.out.println("Jumlah kursi ekonomi : " +ekonomi);
+            System.out.println("Jumlah kursi vip terisi  : " +vip);
+            System.out.println("Jumlah kursi bisnis terisi : " +bisnis);
+            System.out.println("Jumlah kursi ekonomi terisi : " +ekonomi);
             break;
           case 4: 
             int kosong = 0;
