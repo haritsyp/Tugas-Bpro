@@ -73,10 +73,10 @@ public class TiketPesawat
                 harga=100000;
                 System.out.print("Harga Tiket Rp."+harga);
               }
+              omset=omset+harga;
             }
             
-            omset=omset+harga;
-            
+
             kursi[bariskursi][kolomkursi]=1;
             
             break;
@@ -84,7 +84,7 @@ public class TiketPesawat
             System.out.println("Baris/Kolom\tA\tB\tC\tD\tE\tF");
             for(int i=0;i<13;i++)
             {
-              System.out.print("baris "+baris[i]+"\t");
+              System.out.print("baris "+baris[i]+"   "+"\t");
               for(int j=0;j<6;j++)
               {
                 if(kursi[i][j]==0)
