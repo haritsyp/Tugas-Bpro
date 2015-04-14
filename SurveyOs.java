@@ -6,7 +6,7 @@ public class SurveyOs
   {
     int jumlah=0;
     int total=0;
-    String[]os = {"Android","Blackbery","IOS","Symbian","Windows","Other"};
+    String[]os = {"Android","BB","IOS","Symbian","Windows","Other"};
     String[] nama = {"Nur", "Dimas", "Naufal", "Yanuar", "Alifand", "Arizky","Egen","Bagus"};
     int[][] jual = {{3,0,0,0,0,0},
                     {1,0,0,0,0,1},
@@ -18,7 +18,7 @@ public class SurveyOs
                     {1,0,1,0,1,1}};
     
     
-    System.out.println("NAMA/OS\t\tAndroid\tBlackberry\tIOS\tSymbian\tWindows\tOther");
+    System.out.println("NAMA/OS\t\tAndroid\tBB\tIOS\tSymbian\tWindows\tOther");
     
     for(int i=0;i<8;i++)
     {
