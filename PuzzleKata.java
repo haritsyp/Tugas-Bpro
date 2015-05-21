@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PuzzleKata{
   
-  public static void getRandom(String kata){  
+  public static String getRandom(String kata){  
     
     //array untuk membagi karakter
     char [] ar = new char [kata.length()];    
@@ -16,7 +16,7 @@ public class PuzzleKata{
     char [] ac = new char [kata.length()];
     
     //perulangan untuk mengulang sampai karakter membentuk kata
-    for(int j=0;katas.length()!=kata.length();j++){      
+    while(katas.length()!=kata.length()){      
       boolean sama = false;
       nilai = (int) (Math.random()*kata.length());           
       ac[nilai] = kata.charAt(nilai); //array untuk membandingkan karakter
@@ -36,7 +36,15 @@ public class PuzzleKata{
       }
     }  
     //cetak kata
-    System.out.print(katas+" : ");
+    return katas;
+  }  
+  
+  public static void cetakGaris(int panjang){
+    System.out.println();
+    for(int i=0;i<panjang;i++){
+      System.out.print("*");
+    }
+    System.out.println();
   }
   
   //Deklarasi Variabel
@@ -49,7 +57,7 @@ public class PuzzleKata{
     
     //Memasukkan jumlah soal
     System.out.print("Masukkan jumlah soal :");
-    soal=br.nextInt();   
+    soal=br.nextInt(); 
     String [] soalRandom = new String [soal];
     String [] benar = new String [soal];
     String [] pembetulan = new String [soal];
@@ -58,14 +66,15 @@ public class PuzzleKata{
     //Perulangan Soal
     for(int i=0;i<soal;i++){
       nilai = (int)(Math.random()*kata.length);
+      soalRandom[i]=getRandom(kata[nilai]);
       System.out.print(i+1+".");
-      getRandom(kata[nilai]);
-      soalRandom[i]=kata[nilai];
+      System.out.print(soalRandom[i] + " : ");     
       jawab[i] = br.next();
+      
       
       //Menentukan benar dan salah
       if(jawab[i].equalsIgnoreCase(kata[nilai])){
-        poin = poin + 10;
+        poin = poin + 1;
         benar[i]="benar";
         pembetulan[i]="-";
       }
@@ -77,11 +86,14 @@ public class PuzzleKata{
     }
     
     //Output Jawaban dan Pembenaram
-    System.out.println();
-    System.out.println("No. SOAL\tJAWABAN\t\tSTATUS\t\tPEMBETULAN");
+    cetakGaris(73);
+    System.out.print("No KUNCI\t\tJAWABAN\t\tSTATUS\t\tPEMBETULAN");
+    cetakGaris(73);
     for(int x=0;x<soal;x++){
-      System.out.println(x+1+". "+soalRandom[x]+"\t"+jawab[x]+"\t\t"+benar[x]+"\t\t"+pembetulan[x]);
+      System.out.println(x+1+". "+soalRandom[x]+"\t\t"+jawab[x]+"\t\t"+benar[x]+"\t\t"+pembetulan[x]+"\t");
     }
-    System.out.println("NILAI ANDA : "+poin);
+    cetakGaris(73);
+    float score = poin*100/soal;
+    System.out.println("NILAI ANDA : "+score);
   }
 }
