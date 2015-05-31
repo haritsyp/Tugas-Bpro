@@ -205,10 +205,9 @@ public class DbMhsApp02{
                 }                            
                 nimMhs = new String [arr.length];
                 daftarNama = new String [ayy.length];
-                for(int j=0;j<arr.length;j++){
-                  nimMhs[j] = arr[j];
-                  daftarNama[j] = ayy[j];
-                }               
+               
+                System.arraycopy(arr,0,nimMhs,0,arr.length);
+                System.arraycopy(ayy,0,daftarNama,0,arr.length);
               }           
             }
             break;
@@ -246,13 +245,12 @@ public class DbMhsApp02{
             
             nimMhs = new String[nimMhs.length+1];
             daftarNama = new String[daftarNama.length+1];
-            nimMhs[nimMhs.length-1] = nimbaru;
-            daftarNama[daftarNama.length-1] = namabaru;
             
-            for(int x=0;x<nimMhs.length-1;x++){
-              nimMhs[x] = arr1[x];
-              daftarNama[x] = ayy1[x];
-            }                       
+            nimMhs[nimMhs.length-1] = nimbaru;
+            daftarNama[daftarNama.length-1] = namabaru;    
+            
+            System.arraycopy(arr1,0,nimMhs,0,nimMhs.length-1);
+            System.arraycopy(ayy1,0,daftarNama,0,daftarNama.length-1);             
             break;
           case  7 :
             for(int j=0;j<nimMhs.length;j++){         
