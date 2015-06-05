@@ -1,4 +1,10 @@
 import java.util.*;
+class AntrianPasien{
+  int no;
+  String nama;
+  String alamat;
+}
+
 public class SistemAntrianSederhana{
   public static Scanner sc = new Scanner(System.in);
   public static LinkedList<AntrianPasien> antrian = new LinkedList<AntrianPasien>();
