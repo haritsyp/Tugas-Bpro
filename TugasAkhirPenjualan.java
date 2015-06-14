@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
-public class UasBpro{
+
+public class TugasAkhirPenjualan{
   
   //Deklarasi Array 2D untuk DataBarang
   public static String [][] dataBarang = 
@@ -57,12 +58,13 @@ public class UasBpro{
   public static Vector<Vector> transaksiBarang = new Vector<Vector>();
   
   //Method Menyimpan Transaksi Penjualan
-  public static Vector<Object> addTransaksi(String kdtr,String tgl, int totalTransaksi, int totalModal){
+  public static Vector<Object> addTransaksi(String kdtr,String tgl, int totalTransaksi, int totalModal, int totalBarang){
     Vector <Object> vector = new Vector<Object>();
     vector.addElement(kdtr);
     vector.addElement(tgl);
     vector.addElement(totalTransaksi);
     vector.addElement(totalModal);
+    vector.addElement(totalBarang);
     return vector;
   }
   
@@ -295,6 +297,7 @@ public class UasBpro{
     deal = false;
     int totalTransaksi = 0;
     int totalModal = 0;
+    int totalBarang = 0;
     int count =0;
     String kdt = kodePenjualan(0);   
     String tgl = date.toString();
@@ -317,6 +320,7 @@ public class UasBpro{
           int tothg = hgbr * jmlb;
           int trmdl = Integer.parseInt(dataBarang[k][2])*jmlb;
           totalModal = totalModal + trmdl;
+          totalBarang = totalBarang + jmlb;
           penjualanBarang.addElement(addPenjualan(kdt,kdbr,nmbr,hgbr,jmlb,tothg));  
           totalTransaksi = totalTransaksi + tothg;
           System.out.println("---------------------------------------------");
@@ -345,8 +349,8 @@ public class UasBpro{
         }
       }while(jawab == false);
     }while(beli == false);
-    if(count>0){
-      jawab = false;
+    if(count>0){      
+      jawab = false;      
       do{
         System.out.print("Apakah Anda Menyetujui Transaksi Ini [y/t] :");
         pil = sc.next();
@@ -364,9 +368,33 @@ public class UasBpro{
       }while(jawab == false);
     }
     if((count>0) && (deal == true)){
-      transaksiBarang.addElement(addTransaksi(kdt,tgl,totalTransaksi,totalModal));
+      System.out.println("Total Transaksi  : Rp." + totalTransaksi);
+      System.out.print("Uang yang Dibayarkan : Rp.");
+      int cost = sc.nextInt();
+      int kembalian = cost - totalTransaksi;      
+      System.out.println("-----------------HARITS ELECTRONIC----------------");
+      System.out.println("---------------Jl.Manukan Madya 17c/16------------");
+      System.out.println("Kode Transaksi    : " + kdt);
+      System.out.println("Tanggal Transaksi : " + tgl);
+      cetakGaris(50);
+      System.out.println("NamaBarang\t\t Harga\tQty  \tTotal");
+      for(int h=0;h<penjualanBarang.size();h++){
+        if(kdt == penjualanBarang.elementAt(h).elementAt(0)){
+        System.out.println(penjualanBarang.elementAt(h).elementAt(2)+"\t"+penjualanBarang.elementAt(h).elementAt(3)+"\t"+
+                             penjualanBarang.elementAt(h).elementAt(4)+"\t"+penjualanBarang.elementAt(h).elementAt(5));
+        }
+      }
+      cetakGaris(50);
+      System.out.println("Total Barang    : " + totalBarang + " Unit");
+      System.out.println("Total Transaksi : Rp." + totalTransaksi);
+      System.out.println("Kembali         : Rp." + kembalian);
+      cetakGaris(50);
+      transaksiBarang.addElement(addTransaksi(kdt,tgl,totalTransaksi,totalModal,totalBarang));
     }else if((count == 0) || (deal == false)){
       kodePenjualan(2);
+      for(int d=count;d<penjualanBarang.size();d++){
+        penjualanBarang.remove(d);
+      }
     }
   }
   
@@ -521,11 +549,13 @@ public class UasBpro{
   public static void omsetPenjualan(){
     int totKotor = 0;
     int totModal = 0;
-    int totomset = 0;
+    int totomset = 0;  
+    int totBarang = 0;
     System.out.println("---------------TOTAL PENJUALAN--------------");
     for(int a=0;a<transaksiBarang.size();a++){
       System.out.println(transaksiBarang.elementAt(a).elementAt(0) + " : Rp." + transaksiBarang.elementAt(a).elementAt(2));
       totKotor = totKotor + (int)transaksiBarang.elementAt(a).elementAt(2);
+      totBarang = totBarang + (int)transaksiBarang.elementAt(a).elementAt(4);
     }
     System.out.println("--------------------------------------------");
     System.out.println("OMSET PENJUALAN : Rp." + totKotor);   
@@ -540,6 +570,7 @@ public class UasBpro{
     System.out.println("MODAL PENJUALAN : Rp." + totModal);
     System.out.println("============================================");
     System.out.println("LABA KOTOR PENJUALAN : Rp." + labaPenjualan);
+    System.out.println("TOTAL BARANG TERJUAL : " + totBarang + " Unit");
     System.out.println("============================================");
   }
   
